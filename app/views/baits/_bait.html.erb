@@ -2,11 +2,11 @@
 <%= tag.div id: dom_id(bait)  do %>
   <div class="bait">
     <%= current_second %>
-    <%= link_to image_tag(bait.image), bait %>
+    <%= link_to image_tag(bait.image), bait, data: { turbo_frame: '_top' } %>
     <div class="name">
       <%# Corrigindo os link_to. Por ele estar dentro do turbo_frame ele vai tentar fazer o replace buscando %>
       <%# pelo identificador na dom. Com essa option de turbo_frame: '_top' nós quebramos o frame e a página é redirecionada para a show %>
-      <%= link_to bait.name, bait %>
+      <%= link_to bait.name, bait, data: { turbo_frame: '_top' } %>
     </div>
     <div class="category">
       <%= bait.category %>
