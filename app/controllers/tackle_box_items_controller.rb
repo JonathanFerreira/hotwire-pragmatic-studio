@@ -33,7 +33,9 @@ class TackleBoxItemsController < ApplicationController
 
     # só vamos renderizar o necessário
     @bait.my_tackle_box_item = @item
-    render @bait
+
+    # vamos parar de renderizar o partial _bait e deixar o rails renderizar a view create.turbo_stream
+    # render @bait
   end
 
   def destroy
@@ -44,7 +46,7 @@ class TackleBoxItemsController < ApplicationController
     # redirect_to baits_url
 
     @bait = @item.bait
-    render @bait
+    render :create
   end
 
 end
