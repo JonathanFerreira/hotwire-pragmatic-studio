@@ -36,6 +36,11 @@ class TackleBoxItemsController < ApplicationController
 
     # vamos parar de renderizar o partial _bait e deixar o rails renderizar a view create.turbo_stream
     # render @bait
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to baits_url } # para quando o javascript estiver desativado. Assim evita o erro na tela e faz a pagina recarregar por completo
+    end
   end
 
   def destroy
@@ -46,7 +51,11 @@ class TackleBoxItemsController < ApplicationController
     # redirect_to baits_url
 
     @bait = @item.bait
-    render :create
+
+    respond_to do |format|
+      format.turbo_stream { render :create }
+      format.html { redirect_to baits_url } # para quando o javascript estiver desativado. Assim evita o erro na tela e faz a pagina recarregar por completo
+    end
   end
 
 end
