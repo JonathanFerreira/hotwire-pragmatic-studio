@@ -44,7 +44,13 @@ class FishCatchesController < ApplicationController
   def destroy
     @fish_catch.destroy
 
-    redirect_to tackle_box_item_for_catch(@fish_catch)
+    respond_to do |format|
+      format.turbo_stream do
+        @fish_catches = fish_catches_for_bait(@fish_catch.bait)
+      end
+      # utilizado para quando o javascript está desabilitado
+      format.html { redirect_to tackle_box_item_for_catch(@fish_catch) }
+    end
   end
 
 private
