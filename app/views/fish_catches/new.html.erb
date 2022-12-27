@@ -1,3 +1,6 @@
 <h2>New Fish Catch</h2>
 
-<%= render "form", fish_catch: @fish_catch %>
+<%# inserimos o turbo_frame_tag com o mesmo id da show para que seja possivel fazer o replace automaticamente %>
+<%= turbo_frame_tag "new_catch" do %>
+  <%= render "form", fish_catch: @fish_catch %>
+<% end %>
